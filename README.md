@@ -89,5 +89,117 @@ Our code consists of three scripts:
 2. Siamese_network.py - contains the SiameseNetwork class that is our implementation of the network described in the paper. It includes many functions including one that builds the CNN used in the network and a function for finding the optimal hyperparameters.
 3. Experiments.py - The script that is actually running. It calls the train and predict methods from SiameseNetwork.
 
+## Architecture:
+We mostly followed the architecture specified in the paper - The network is two Convolutional Neural Networks that are joined towards the end creating a Siamese network. However, our network is slightly smaller.
+Number of layers: Each CNN, before being conjoined, has 5 layers (4 conventional and 1 fully connected layer). Then there is a distance layer, combining both CNNs, with a single output.
+Dimensions: For the CNN part:
+
+| Layer | Input Size | Filters | Kernel | Maxpooling | Activation Function|
+|---| --- | --- | --- |  ---  | --- |
+|  1 | 105x105. Reshaped from 250x250 to adhere to the paper. | 64 | 10x10 | Yes, Stride of 2 |ReLU
+| 2 | 64 filters of 10x10 | 128 | 7x7 | Yes, Stride of 2 | ReLU |
+| 3 | 128 filters of 7x7 | 128 | 4x4 | Yes, Stride of 2 | ReLU |
+| 4 | 128 filters of 4x4 | 256 | 4x4 | No | ReLU |
+| 5 | 4096x1 Fully connected feature layer with drop out rate of 0.4 (Fraction of the input units to drop) | - | - |No | Sigmoid|
+- There are two identical CNNs as described in the table.
+- All CNN layers, except the last one (the fully connected layer), are defined with a fixed stride of 1 (as in the paper), padding value of ‘valid’ (with no zero paddings, the kernel is restricted to traverse only within the image), L2 as kernel regularizer with regularization factor of 2e-4 and perform batch normalization.
+- For the last one (the fully connected layer), we used L2 as a kernel regularizer with a regularization factor of 2e-3.
+- Please note Any and all parameters that were not mentioned used the default Tensorflow 2.0.0 Keras values.
+- After the last layer, we add a layer that connects both sides thus creating the Siamese network. The activation function of this layer is a Sigmoid function which is handy since we have 2 classes (Same vs Not the same person).
+- Total params: 38,954,049
+- Trainable params: 38,952,897
+- Non-trainable params: 1,152
+
+## Initialization
+- Weight initialization for all edges was done as described in the paper: A normal distribution with a mean of 0 and a standard deviation of 0.01.
+- Bias initialization was also done as it was in the paper, with a mean of 0.5 and a standard deviation of 0.01. However, the first layer has no bias. The paper doesn’t mention if they did this or not, but we found in this paper that occasionally, having no bias for the initial layer might be beneficial. This occurs when the layer is sufficiently large and the data is distributed fairly uniformly, which probably occurs in our case because the training set is predefined. Indeed, in our experiments adding a bias usually reduced the accuracy. Our final model doesn’t have a bias for the first layer.
+- Note: the authors used a slightly different bias initialization for the fully connected layers.  Since there are so many edges, they sampled from a larger distribution. In our experiments, the same bias sampling as the rest of the network worked well so we used the same distribution.
+- These are fairly typical methods of initializing weights and seemed to work well for the authors so we saw no reason to not imitate them (excluding the fully connected layer).
+
+## Stopping criteria:
+We used the EarlyStopping function monitoring on the validation loss with a minimum delta of 0.1 (Minimum change in the monitored quantity to qualify as an improvement, i.e. an absolute change of less than min_delta, will count as no improvement.) and patience 5 (Number of epochs with no improvement after which training will be stopped.). The direction is automatically inferred from the name of the monitored quantity (‘auto’).
+
+## Network Hyper-Parameters Tuning:
+NOTE: Here we explain the reasons behind the choices of the parameters.
+After implementing our Siamese Network, we had to optimize the different parameters used. Many of them, such as layer size, were chosen based on the work in the paper and we decided against trying to find a better combination since the search space would be massive and we don’t know enough to narrow it down.
+- Learning Rate: We tried many  different values, ranging from 0.1 to 0.00001. After running numerous experiments, we found 0.00005 to work the best.
+- Optimizer: The paper didn’t specify so we used the robust and popular ADAM optimizer.
+- Epochs: We tried epochs of 5, 10, 20 and 50. We found 10 to work the best.
+- Batch size: We tried multiplications of 16 such as 16, 32 and 64. Our final model has a batch size of 32.
+
+## Full Experimental Setup
+Validation Set: Empirically, we learned that using a validation set is better than not if there isn’t enough data. We used the fairly standard 80/20 ratio between training and validation which worked well.
+- Batch sizes - 32
+- Epochs - 10
+- Stopping criteria - 5 epochs without improvement.
+- Learning rate: 0.0005
+- Min delta for improvement: 0.1
+
+##  Experimental Results:
+After implementing our Siamese Network, we ran it with many different settings as described above and chose the optimal settings. These are the results:
+a.	Convergence times, final loss and accuracy on the test set and holdout set:
+- Final Loss on Testing set - 3.106
+- Accuracy on Holdout set - 0.734 (73.4%)
+- Final Loss on Testing set - 3.111
+- Accuracy on Testing set - 0.731 (73.2%)
+- Convergence time - 30 seconds
+- Prediction time - less than 1 second
+
+b. Graphs describing the loss on the training set throughout the training process:
+
+Fig.2: Reduction in the loss function for each epoch. The validation set predicted the loss on the test set well.
+
+Fig.3: Accuracy of the training and validation sets for each epoch. For the validation set the accuracy plateaued after 2 epochs, but as you can see in fig.1 the loss continued to reduce explaining the increase in  accuracy for the test set for 2 more epochs.
+
+c. Performance when experimenting with various parameters:
+We used the best parameters and changed some of them to test their effect, seed 0, learning rate 0.00005, batch_size 32, epochs 10 patience of 5, and minimum delta of 0.1.
+
+We tested the following learning rates: 0.000005, 0.00001, 0.00003 0.00005, 0.00007, 0.0001 and 0.001.
+
+Fig.4: Here we can see that the learning rate around 0.0005 had similar results, but if it was too large or too small the results dropped drastically.
+
+We tested the following epochs: 1, 2, 3, 5, 10, 15, 20, 30 epochs.
+
+Fig.5:# of epochs didn’t change the accuracy much past 2 epochs.
+
+We tested the following batch sizes: 8, 16, 32, 48, 64.
+
+Fig.6: Curiously, batch size distributes normally around 32 for the test set and is wildly different for the validation set.
+
+d. Please include examples of accurate classifications and misclassifications and try to determine why your model was not successful.
+
+Best correct classification:
+Same person (prob: 0.9855): Unsurprising, as the images really are very similar.
 
 
+Gordon_Campbell_0001
+Gordon_Campbell_0002
+
+Different people (prob: 0.0000379): It is quite clear that it’s two different people. Nothing too interesting here - The colors and facial expressions are very different.
+
+
+
+Babe_Ruth_0001
+Joshua_Perper_0001
+
+Worst Misclassification:
+Same person (prob:0.0587): Even though both are the same person, the images are radically different - In the left image, Candice is wearing sunglasses, has bright hair and is looking the other way. On the right, she has dark hair, no sunglasses and has her teeth showing. We theorize that most people would classify this wrong as well.
+
+
+
+Candice_Bergen_0001
+Candice_Bergen_0003
+
+
+Different people (prob: 0.9464): This is quite surprising since it’s quite apparent that this is not the same person, but the network had such high confidence that they are. Perhaps the coat resembles the hair lapping around her head.
+
+Lisa_Murkowski_0001
+Svetlana_Belousova_0001
+
+e. Any other information you consider relevant or found useful while training the model
+- We used K.clear_session() in order to make sure we are in a new session in each combination in the experiment (We imported consider K as tensorflow.keras.backend).
+- We initialized the seeds using these lines:
+os.environ['PYTHONHASHSEED'] = str(self.seed)
+ random.seed(self.seed)
+np.random.seed(self.seed)
+tf.random.set_seed(self.seed)
