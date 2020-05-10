@@ -208,7 +208,7 @@ Different people (prob: 0.9464): This is quite surprising since it’s quite app
 e. Any other information you consider relevant or found useful while training the model
 - We used K.clear_session() in order to make sure we are in a new session in each combination in the experiment (We imported consider K as tensorflow.keras.backend).
 - We initialized the seeds using these lines:
-os.environ['PYTHONHASHSEED'] = str(self.seed)
- random.seed(self.seed)
-np.random.seed(self.seed)
-tf.random.set_seed(self.seed)
+`os.environ['PYTHONHASHSEED'] = str(self.seed)`
+`random.seed(self.seed)`
+`np.random.seed(self.seed)`
+`tf.random.set_seed(self.seed)`
