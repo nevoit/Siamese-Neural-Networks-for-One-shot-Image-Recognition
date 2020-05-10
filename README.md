@@ -10,14 +10,16 @@ As specified, we used the “Labeled Faces in the Wild” dataset with over 5,70
 # Table of Contents
 1. [Authors](#Authors)
 2. [Purposes of The Assignment](#Purposes-of-The-Assignment)
-3. [Authors](#Authors)
-4. [Authors](#Authors)
-5. [Authors](#Authors)
-6. [Authors](#Authors)
-7. [Authors](#Authors)
-8. [Authors](#Authors)
-9. [Authors](#Authors)
-10. [Authors](#Authors)
+3. [Instructions](#Instructions)
+4. [Dataset Analysis](#Dataset-Analysis)
+5. [Getting Started](#Getting-Started)
+6. [Code Design](#Code-Design)
+7. [Architecture](#Architecture)
+8. [Initialization](#Initialization)
+9. [Stopping criteria:](#Stopping-criteria)
+10. [Network Hyper-Parameters Tuning:](#Network-Hyper-Parameters-Tuning)
+11. [Full Experimental Setup](#Full-Experimental-Setup)
+12. [Experimental Results](#Experimental-Results)
 
 ## Authors
 * **Tomer Shahar** - [Tomer Shahar](https://github.com/Tomer-Shahar)
@@ -104,13 +106,13 @@ Option 2: Through an IDE:
 - The project has been tested on Windows 10 with Python 3.7.1 and TensorFlow 2.0.0.
 - Install Pillow, Sklearn, and TQDM libraries (included in setup requirements).
 
-## Code Design:
+## Code Design
 Our code consists of three scripts:
 1. Data_loader.py - contains the DataLoader class that loads image data, manipulates it, and writes it into a specified path in a certain format.
 2. Siamese_network.py - contains the SiameseNetwork class that is our implementation of the network described in the paper. It includes many functions including one that builds the CNN used in the network and a function for finding the optimal hyperparameters.
 3. Experiments.py - The script that is actually running. It calls the train and predict methods from SiameseNetwork.
 
-## Architecture:
+## Architecture
 We mostly followed the architecture specified in the paper - The network is two Convolutional Neural Networks that are joined towards the end creating a Siamese network. However, our network is slightly smaller.
 Number of layers: Each CNN, before being conjoined, has 5 layers (4 conventional and 1 fully connected layer). Then there is a distance layer, combining both CNNs, with a single output.
 Dimensions: For the CNN part:
@@ -137,10 +139,10 @@ Dimensions: For the CNN part:
 - Note: the authors used a slightly different bias initialization for the fully connected layers.  Since there are so many edges, they sampled from a larger distribution. In our experiments, the same bias sampling as the rest of the network worked well so we used the same distribution.
 - These are fairly typical methods of initializing weights and seemed to work well for the authors so we saw no reason to not imitate them (excluding the fully connected layer).
 
-## Stopping criteria:
+## Stopping Criteria
 We used the EarlyStopping function monitoring on the validation loss with a minimum delta of 0.1 (Minimum change in the monitored quantity to qualify as an improvement, i.e. an absolute change of less than min_delta, will count as no improvement.) and patience 5 (Number of epochs with no improvement after which training will be stopped.). The direction is automatically inferred from the name of the monitored quantity (‘auto’).
 
-## Network Hyper-Parameters Tuning:
+## Network Hyper-Parameters Tuning
 NOTE: Here we explain the reasons behind the choices of the parameters.
 After implementing our Siamese Network, we had to optimize the different parameters used. Many of them, such as layer size, were chosen based on the work in the paper and we decided against trying to find a better combination since the search space would be massive and we don’t know enough to narrow it down.
 - Learning Rate: We tried many  different values, ranging from 0.1 to 0.00001. After running numerous experiments, we found 0.00005 to work the best.
@@ -156,7 +158,7 @@ Validation Set: Empirically, we learned that using a validation set is better th
 - Learning rate: 0.0005
 - Min delta for improvement: 0.1
 
-##  Experimental Results:
+##  Experimental Results
 After implementing our Siamese Network, we ran it with many different settings as described above and chose the optimal settings. These are the results:
 a.	Convergence times, final loss and accuracy on the test set and holdout set:
 - Final Loss on Testing set - 3.106
