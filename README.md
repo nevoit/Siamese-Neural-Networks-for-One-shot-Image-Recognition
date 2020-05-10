@@ -52,7 +52,8 @@ Please note the that report needs to reflect your decision-making process throug
 
 - Please note that your work will not be evaluated solely on performance, but also on additional elements such as code correctness and documentation, a complete and clear documentation of your experimental process, analysis of your results and breadth and originality (where applicable).
 
-![Figure 1 - Siamese network for facial recognition](https://github.com/nevoit/Convolutional-Neural-Networks/blob/master/figures/figure%201%20explanation.png "Figure 1 - Siamese network for facial recognition")
+![Figure 1 - Siamese network for facial recognition](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/figure%201%20explanation.png?raw=true "Figure 1 - Siamese network for facial recognition")
+Figure 1 - Siamese network for facial recognition
 
 ## Dataset Analysis
 - Size: 5,749  people
@@ -67,8 +68,10 @@ Option 1: Through Google Colab (see a [copy here](https://colab.research.google.
 
 1. Dataset -
 - Run the Colab script
-- 
 - Mount your drive and follow the link. Paste the code into the input box:
+
+![colab](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/colab.png?raw=true "colab")
+
 - Create the subfolder  “Content/My Drive/datasets/lfw2”
 - Inside this directory create two subdirectories: lfw2 which will contain all the folders with the images from the dataset and splits which will contain the files test.txt and train.txt as supplied in the assignment.
 - Run all the following code blocks in order to compile the classes and run the experiments.
@@ -78,7 +81,13 @@ Option 2: Through an IDE:
 - Create a folder called ‘lfwa’ in the project main folder.
 - Create a sub-folder called ‘lfw2’ inside ‘lfwa’
 - Create a sub-folder called ‘lfw2’ inside ‘lfwa\\lfwa2’ and put all the image folders inside this folder. For example: ‘lfwa\\lfwa2\\lfwa2\\Aaron_Eckhart’:
+
+![ide](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/IDE.PNG?raw=true "ide")
+
 2. Training and Testing set - Create a sub-folder called ‘splits’ inside ‘lfwa\\lfwa2’ and put ‘train.txt’ and ‘test.txt’ files. Each file describes all the pairs:
+
+![dataset](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/dataset.PNG?raw=true "dataset")
+
 3. Installation -
 - The project has been tested on Windows 10 with Python 3.7.1 and TensorFlow 2.0.0.
 - Install Pillow, Sklearn, and TQDM libraries (included in setup requirements).
@@ -147,7 +156,11 @@ a.	Convergence times, final loss and accuracy on the test set and holdout set:
 
 b. Graphs describing the loss on the training set throughout the training process:
 
+![loss-epoch](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/loss-epoch.PNG?raw=true "loss-epoch")
+
 Fig.2: Reduction in the loss function for each epoch. The validation set predicted the loss on the test set well.
+
+![loss-acc](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/acc-epoch.PNG?raw=true "loss-acc")
 
 Fig.3: Accuracy of the training and validation sets for each epoch. For the validation set the accuracy plateaued after 2 epochs, but as you can see in fig.1 the loss continued to reduce explaining the increase in  accuracy for the test set for 2 more epochs.
 
@@ -156,13 +169,19 @@ We used the best parameters and changed some of them to test their effect, seed 
 
 We tested the following learning rates: 0.000005, 0.00001, 0.00003 0.00005, 0.00007, 0.0001 and 0.001.
 
+![lr-acc](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/acc_lr.PNG?raw=true "lr-acc")
+
 Fig.4: Here we can see that the learning rate around 0.0005 had similar results, but if it was too large or too small the results dropped drastically.
 
 We tested the following epochs: 1, 2, 3, 5, 10, 15, 20, 30 epochs.
 
+![ep-acc](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/acc_epoch.PNG?raw=true "ep-acc")
+
 Fig.5:# of epochs didn’t change the accuracy much past 2 epochs.
 
 We tested the following batch sizes: 8, 16, 32, 48, 64.
+
+![bs-acc](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/acc_bs.PNG?raw=true "bs-acc")
 
 Fig.6: Curiously, batch size distributes normally around 32 for the test set and is wildly different for the validation set.
 
@@ -171,30 +190,20 @@ d. Please include examples of accurate classifications and misclassifications an
 Best correct classification:
 Same person (prob: 0.9855): Unsurprising, as the images really are very similar.
 
-
-Gordon_Campbell_0001
-Gordon_Campbell_0002
+![same](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/gordon_campbell.PNG?raw=true "same")
 
 Different people (prob: 0.0000379): It is quite clear that it’s two different people. Nothing too interesting here - The colors and facial expressions are very different.
 
-
-
-Babe_Ruth_0001
-Joshua_Perper_0001
+![babe](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/babe_ruth_joshua_perper.PNG?raw=true "babe")
 
 Worst Misclassification:
 Same person (prob:0.0587): Even though both are the same person, the images are radically different - In the left image, Candice is wearing sunglasses, has bright hair and is looking the other way. On the right, she has dark hair, no sunglasses and has her teeth showing. We theorize that most people would classify this wrong as well.
 
-
-
-Candice_Bergen_0001
-Candice_Bergen_0003
-
+![Candice_Bergen](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/candice_bergen.PNG?raw=true "Candice_Bergen")
 
 Different people (prob: 0.9464): This is quite surprising since it’s quite apparent that this is not the same person, but the network had such high confidence that they are. Perhaps the coat resembles the hair lapping around her head.
 
-Lisa_Murkowski_0001
-Svetlana_Belousova_0001
+![lisa](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/lisa_murkowski_svetlana_belousova.PNG?raw=true "lisa")
 
 e. Any other information you consider relevant or found useful while training the model
 - We used K.clear_session() in order to make sure we are in a new session in each combination in the experiment (We imported consider K as tensorflow.keras.backend).
