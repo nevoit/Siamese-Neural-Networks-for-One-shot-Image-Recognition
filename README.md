@@ -9,7 +9,7 @@ As specified, we used the “Labeled Faces in the Wild” dataset with over 5,70
 
 # Table of Contents
 1. [Authors](#Authors)
-2. [Purposes of The Assignment](#Purposes of The Assignment)
+2. [Purposes of The Assignment](#Purposes-of-The-Assignment)
 3. [Authors](#Authors)
 4. [Authors](#Authors)
 5. [Authors](#Authors)
