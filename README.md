@@ -1,4 +1,4 @@
-# One-shot-Siamese-Neural-Network
+# One-shot Siamese Neural Network
 In this assignment we were tasked with creating a Convolutional Neural Networks (CNNs). 
 A step-by-step CNNs tutorial you can find [here (DeepLearning.ai)](https://www.youtube.com/playlist?list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF).
 
