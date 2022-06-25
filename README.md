@@ -78,7 +78,7 @@ Figure 1 - Siamese network for facial recognition
     - Validation set: 20 percent of the training set - 440 pairs. (leaving 1760 pairs for the actual training data)
 
 ## Getting Started
-Option 1: Through Google Colab (see a [copy here](https://colab.research.google.com/drive/1fwTLg6HTIAaly3b2kuZ4kMpHHmtf_gHU?usp=sharing) - please click on "Star" and "Follow" before asking for permission):
+Option 1: Through Google Colab (see a [copy here](https://colab.research.google.com/drive/1fwTLg6HTIAaly3b2kuZ4kMpHHmtf_gHU?usp=sharing) - please click on "Star" and "Follow" before asking for permission) or on Kaggle (see a [copy here](https://www.kaggle.com/code/nevoit/siamese-neural-networks-one-shot-image-recognition) - please upvote and follow):
  
 1. Dataset -
 - Run the Colab script
