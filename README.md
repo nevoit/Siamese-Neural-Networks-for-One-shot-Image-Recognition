@@ -22,7 +22,7 @@ As specified, we used the “Labeled Faces in the Wild” dataset with over 5,70
 12. [Experimental Results](#Experimental-Results)
 
 ## Authors
-**Tomer Shahar** - [Tomer Shahar](https://github.com/Tomer-Shahar) and **Nevo Itzhak** - [Nevo Itzhak](https://www.linkedin.com/in/nevoitzhak/)
+[Tomer Shahar](https://github.com/Tomer-Shahar) and [Nevo Itzhak](https://www.linkedin.com/in/nevoitzhak/)
 
 ## Purposes of The Assignment 
 Enabling students to experiment with building a convolutional neural net and using it on a real-world dataset  and problem.
