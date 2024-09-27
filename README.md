@@ -1,6 +1,6 @@
 # One-shot Siamese Neural Network
-In this assignment we were tasked with creating a Convolutional Neural Networks (CNNs). 
-A step-by-step CNNs tutorial you can find [here (DeepLearning.ai)](https://www.youtube.com/playlist?list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF).
+In this assignment, we were tasked with creating Convolutional Neural Networks (CNNs). 
+A step-by-step CNNs tutorial can be found here (DeepLearning.ai)](https://www.youtube.com/playlist?list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF).
 
 The assignment is to be carried out using Python V3.6 (or higher) and TensorFlow 2.0 (or higher).
 
@@ -29,7 +29,7 @@ Enabling students to experiment with building a convolutional neural net and usi
 In addition to practical knowledge in the “how to” of building the network, an additional goal is the integration of useful logging tools for gaining better insight into the training process. Finally, the students are expected to read, understand and (loosely) implement a scientific paper.
 
 In this assignment, you will use convolutional neural networks (CNNs) to carry out the task of facial recognition. As shown in class, CNNs are the current state-of-the-art approach for analyzing image-based datasets. More specifically, you will implement a one-shot classification solution. Wikipedia defines one-shot learning as follows: 
-“… an object categorization problem, found mostly in computer vision. Whereas most machine learning based object categorization algorithms require training on hundreds or thousands of samples/images and very large datasets, one-shot learning aims to learn information about object categories from one, or only a few, training samples/images.”
+“… an object categorization problem, found mostly in computer vision. Whereas most machine learning-based object categorization algorithms require training on hundreds or thousands of samples/images and very large datasets, one-shot learning aims to learn information about object categories from one, or only a few, training samples/images.”
 
 Your work will be based on the paper [Siamese Neural Networks for One-shot Image Recognition](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf).
 Your goal, like that of the paper, is to successfully execute a one-shot learning task for previously unseen objects. Given two facial images of previously unseen persons, your architecture will have to successfully determine whether they are the same person. While we encourage you to use the architecture described in this paper as a starting point, you are more than welcome to explore other possibilities.
@@ -39,19 +39,19 @@ Your goal, like that of the paper, is to successfully execute a one-shot learnin
 
 (a) Download the dataset. Note: there are several versions of this dataset, use the version [found here](https://talhassner.github.io/home/projects/lfwa/index.html) (it’s called LFW-a, and is also used in the DeepFace paper).
 
-(b)	Use the following train and test sets to train your model: [Train](http://vis-www.cs.umass.edu/lfw/pairsDevTrain.txt) \ [Test](http://vis-www.cs.umass.edu/lfw/pairsDevTest.txt). [Remember - you will use your test set to perform one-shot learning. This division is set up so that no subject from test set is included in the train set]. Please note it is often a recommended to use a validation set when training your model. Make your own decision whether to use one and what percentage of (training) samples to allocate.
+(b)	Use the following train and test sets to train your model: [Train](http://vis-www.cs.umass.edu/lfw/pairsDevTrain.txt) \ [Test](http://vis-www.cs.umass.edu/lfw/pairsDevTest.txt). [Remember - you will use your test set to perform one-shot learning. This division is set up so that no subject from the test set is included in the train set]. Please note it is often recommended to use a validation set when training your model. Make your own decision whether to use one and what percentage of (training) samples to allocate.
 
-(c) In your report, include an analysis of the dataset (size, number of examples – in total and per class – for the train and test sets, etc). Also provide the full experimental setup you used – batch sizes, the various parameters of your architecture, stopping criteria and any other relevant information. A good rule of thumb: if asked to recreate your work, a person should be able to do so based on the information you provide in your report.
+(c) In your report, include an analysis of the dataset (size, number of examples – in total and per class – for the train and test sets, etc). Also provide the full experimental setup you used – batch sizes, the various parameters of your architecture, stopping criteria, and any other relevant information. A good rule of thumb: if asked to recreate your work, a person should be able to do so based on the information you provide in your report.
 
 - Implement a Siamese network architecture while using the above-mentioned paper as a reference.
 
-(a) Provide a complete description of your architecture: number of layers, dimensions, filters etc. Make sure to mention parameters such as learning rates, optimization and regularization methods, and the use (if exists) of batchnorm.
+(a) Provide a complete description of your architecture: number of layers, dimensions, filters, etc. Make sure to mention parameters such as learning rates, optimization and regularization methods, and the use (if exists) of batchnorm.
 
-(b) Explain the reasoning behind the choices made in answer to the previous section. If your choices were the result of trial and error, please state the fact and describe the changes made throughout your experiments. Choosing certain parameter combination because they appeared in a previously published paper is a perfectly valid reason. 
+(b) Explain the reasoning behind the choices made in answer to the previous section. If your choices were the result of trial and error, please state the facts and describe the changes made throughout your experiments. Choosing certain parameter combinations because they appeared in a previously published paper is a perfectly valid reason. 
 
 - In addition to the details requested above, your report needs to include an analysis of your architecture’s performance. Please include the following information:
 
-(a) Convergence times, final loss and accuracy on the test set and holdout set
+(a) Convergence times, final loss, and accuracy on the test set and holdout set
 
 (b) Graphs describing the loss on the training set throughout the training process
 
@@ -63,7 +63,7 @@ Your goal, like that of the paper, is to successfully execute a one-shot learnin
 
 Please note the that report needs to reflect your decision-making process throughout the assignment. Please include all relevant information.
 
-- Please note that your work will not be evaluated solely on performance, but also on additional elements such as code correctness and documentation, a complete and clear documentation of your experimental process, analysis of your results and breadth and originality (where applicable).
+- Please note that your work will not be evaluated solely on performance, but also on additional elements such as code correctness and documentation, complete and clear documentation of your experimental process, analysis of your results and breadth and originality (where applicable).
 
 ![Figure 1 - Siamese network for facial recognition](https://github.com/nevoit/Siamese-Neural-Networks-for-One-shot-Image-Recognition/blob/master/figures/figure%201%20explanation.png?raw=true "Figure 1 - Siamese network for facial recognition")
 Figure 1 - Siamese network for facial recognition
@@ -109,7 +109,7 @@ Option 2: Through an IDE:
 Our code consists of three scripts:
 1. Data_loader.py - contains the DataLoader class that loads image data, manipulates it, and writes it into a specified path in a certain format.
 2. Siamese_network.py - contains the SiameseNetwork class that is our implementation of the network described in the paper. It includes many functions including one that builds the CNN used in the network and a function for finding the optimal hyperparameters.
-3. Experiments.py - The script that is actually running. It calls the train and predict methods from SiameseNetwork.
+3. Experiments.py - The script that is actually running. It calls the train and predicts methods from SiameseNetwork.
 
 ## Architecture
 We mostly followed the architecture specified in the paper - The network is two Convolutional Neural Networks that are joined towards the end creating a Siamese network. However, our network is slightly smaller.
@@ -122,7 +122,7 @@ Dimensions: For the CNN part:
 | 2 | 64 filters of 10x10 | 128 | 7x7 | Yes, Stride of 2 | ReLU |
 | 3 | 128 filters of 7x7 | 128 | 4x4 | Yes, Stride of 2 | ReLU |
 | 4 | 128 filters of 4x4 | 256 | 4x4 | No | ReLU |
-| 5 | 4096x1 Fully connected feature layer with drop out rate of 0.4 (Fraction of the input units to drop) | - | - |No | Sigmoid|
+| 5 | 4096x1 Fully connected feature layer with drop-out rate of 0.4 (Fraction of the input units to drop) | - | - |No | Sigmoid|
 - There are two identical CNNs as described in the table.
 - All CNN layers, except the last one (the fully connected layer), are defined with a fixed stride of 1 (as in the paper), padding value of ‘valid’ (with no zero paddings, the kernel is restricted to traverse only within the image), L2 as kernel regularizer with regularization factor of 2e-4 and perform batch normalization.
 - For the last one (the fully connected layer), we used L2 as a kernel regularizer with a regularization factor of 2e-3.
@@ -135,7 +135,7 @@ Dimensions: For the CNN part:
 ## Initialization
 - Weight initialization for all edges was done as described in the paper: A normal distribution with a mean of 0 and a standard deviation of 0.01.
 - Bias initialization was also done as it was in the paper, with a mean of 0.5 and a standard deviation of 0.01. However, the first layer has no bias. The paper doesn’t mention if they did this or not, but we found in this paper that occasionally, having no bias for the initial layer might be beneficial. This occurs when the layer is sufficiently large and the data is distributed fairly uniformly, which probably occurs in our case because the training set is predefined. Indeed, in our experiments adding a bias usually reduced the accuracy. Our final model doesn’t have a bias for the first layer.
-- Note: the authors used a slightly different bias initialization for the fully connected layers.  Since there are so many edges, they sampled from a larger distribution. In our experiments, the same bias sampling as the rest of the network worked well so we used the same distribution.
+- Note: the authors used a slightly different bias initialization for the fully connected layers.  Since there are so many edges, they are sampled from a larger distribution. In our experiments, the same bias sampling as the rest of the network worked well so we used the same distribution.
 - These are fairly typical methods of initializing weights and seemed to work well for the authors so we saw no reason to not imitate them (excluding the fully connected layer).
 
 ## Stopping Criteria
@@ -147,7 +147,7 @@ After implementing our Siamese Network, we had to optimize the different paramet
 - Learning Rate: We tried many  different values, ranging from 0.1 to 0.00001. After running numerous experiments, we found 0.00005 to work the best.
 - Optimizer: The paper didn’t specify so we used the robust and popular ADAM optimizer.
 - Epochs: We tried epochs of 5, 10, 20 and 50. We found 10 to work the best.
-- Batch size: We tried multiplications of 16 such as 16, 32 and 64. Our final model has a batch size of 32.
+- Batch size: We tried multiplications of 16 such as 16, 32, and 64. Our final model has a batch size of 32.
 
 ## Full Experimental Setup
 Validation Set: Empirically, we learned that using a validation set is better than not if there isn’t enough data. We used the fairly standard 80/20 ratio between training and validation which worked well.
@@ -159,7 +159,7 @@ Validation Set: Empirically, we learned that using a validation set is better th
 
 ##  Experimental Results
 After implementing our Siamese Network, we ran it with many different settings as described above and chose the optimal settings. These are the results:
-a.	Convergence times, final loss and accuracy on the test set and holdout set:
+a.	Convergence times, final loss, and accuracy on the test set and holdout set:
 - Final Loss on Testing set - 3.106
 - Accuracy on Holdout set - 0.734 (73.4%)
 - Final Loss on Testing set - 3.111
