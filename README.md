@@ -1,6 +1,6 @@
 # One-shot Siamese Neural Network
 In this assignment, we were tasked with creating Convolutional Neural Networks (CNNs). 
-A step-by-step CNNs tutorial can be found here (DeepLearning.ai)(https://www.youtube.com/playlist?list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF).
+A step-by-step CNNs tutorial can be found here [DeepLearning.ai](https://www.youtube.com/playlist?list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF).
 
 The assignment is to be carried out using Python V3.6 (or higher) and TensorFlow 2.0 (or higher).
 
